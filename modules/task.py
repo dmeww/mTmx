@@ -10,7 +10,9 @@ class Task(object):
 
 
     def doTask(self):
+        print('check pass, doing task')
         self.task()
 
     def doCheck(self):
-        self.check()
+        print('checking...')
+        return self.check()
