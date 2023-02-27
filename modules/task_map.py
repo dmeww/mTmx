@@ -8,6 +8,10 @@ conditions = {
         'check': checkBattery,
         'action': sendBattery
     },
-    
+    'ip': {
+        'check': checkIPAddress,
+        'action': sendIPAddress
+    }
+
 
 }

@@ -1,12 +1,8 @@
 from  modules.task import Task
 
 a = Task('battery')
+b = Task('ip')
 
-a.doCheck()
-
-# import os
-
-# r = os.popen('termux-battery-status')
-
-# print(r.read())
+a.doTask()
+b.doTask()
 

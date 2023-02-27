@@ -11,3 +11,7 @@ def checkBattery() -> None:
     print(cmd_str)
     
     return True
+
+
+def checkIPAddress():
+    return True
