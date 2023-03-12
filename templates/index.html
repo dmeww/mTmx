@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTermux -- {{sys.device}} </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+
+<body style="text-align: center;">
+
+
+
+    <div class="container-fluid border">
+
+        <h2>系统信息</h2>
+
+        <table class="table">
+
+            <tr>
+                <td>设备</td>
+
+                <td>
+                    {{sys.device}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    CPU
+                </td>
+                <td>
+                    {{ sys.info['cpu'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    内存占用
+                </td>
+                <td>
+                    {{ sys.info['mem'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    磁盘占用
+                </td>
+
+                <td>
+                    {{ sys.info['disk'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    操作系统
+                </td>
+
+                <td>
+                    {{ sys.info['os'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    剩余电量
+                </td>
+
+                <td>
+                    {{ sys.info['battery'] }} %
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    主机地址
+                </td>
+                <td>
+                    {{ sys.info['ip'] }}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    本机用户
+                </td>
+                <td>
+                    {{ sys.info['user'] }}
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

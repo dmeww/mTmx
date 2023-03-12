@@ -1,18 +1,18 @@
-from modules.task import Task
-import time
+from flask import Flask, request, session, render_template
 
+from modules.tools import SysInfo
 
-tasks = []
+app = Flask(__name__)
+app.secret_key = 't_session'
 
-a = Task('battery')
-b = Task('ip')
+device = ''
 
-tasks.append(a)
-tasks.append(b)
+@app.route('/')
+def indexpage():
+    sys = SysInfo(device=device)
+    sys.getInfo()
+    return render_template('index.html',sys=sys)
 
-while True:
-    for task in tasks:
-        res = task.doCheck()
-        if res:
-            task.doTask()
-    time.sleep(60)
+if __name__ == '__main__':
+    device = 'Android Device'
+    app.run('0.0.0.0', port=5000, debug=True)
