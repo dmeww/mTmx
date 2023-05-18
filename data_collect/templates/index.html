@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap List Example</title>
+    <!-- 引入Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>设备中心</h1>
+        <br>
+        {% if not datas %}
+        <h2>Empty Set</h2>
+        {% else %}
+        <div class="row">
+            {% for key,val in datas.items() %}
+            <div class="col-lg-6 card p-4">
+                <h2 class="h4 mb-1 text-truncate">设备: {{ key }}</h2>
+                <p class="mb-0 text-truncate">IP: &nbsp; {{ val['ip'] }} </p>
+                <p class="mb-0 text-truncate">用户名: &nbsp;  {{ val['user'] }} </p>
+                <p class="mb-0 text-truncate">上次更新: &nbsp;  {{ val['update'] }} </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <!-- 引入Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
