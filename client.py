@@ -16,7 +16,6 @@ def get_info():
     ip_6_info = os.popen("ip -6 address show wlan0 | awk '/inet6/ {print $2}' | grep -v 'fe80'").read().strip()
     # 获取用户信息
     user_info = os.popen("whoami").read().strip()
-    data['update'] = time.time()
     data['ipv4'] = ip_4_info
     data['ipv6'] = ip_6_info
     data['user'] = user_info
