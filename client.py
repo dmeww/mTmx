@@ -10,13 +10,15 @@ data['device'] = ''
 
 
 def get_info():
-    # 获取设备 IP 信息
-    ip_info = os.popen("ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1").read().strip()
+    # 获取设备 IP V4 信息
+    ip_4_info = os.popen("ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1").read().strip()
 
+    ip_6_info = os.popen("ip -6 address show wlan0 | awk '/inet6/ {print $2}' | grep -v 'fe80'").read().strip()
     # 获取用户信息
     user_info = os.popen("whoami").read().strip()
     data['update'] = time.time()
-    data['ip'] = ip_info
+    data['ipv4'] = ip_4_info
+    data['ipv6'] = ip_6_info
     data['user'] = user_info
 
 
