@@ -13,10 +13,9 @@ def index():
 
 @app.route('/data', methods=['POST'])
 def data():
-    data = {}
     data = request.form['data']
     data = json.loads(data)
-    data['update'] = time.strftime("%m-%d %H:%M:%S", time.localtime(data['update']))
+    data['update'] = time.strftime("%m-%d %H:%M:%S", time.time())
     data_list[data['device']] = data
     return 'Data received and stored successfully!'
 
