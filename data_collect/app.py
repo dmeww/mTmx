@@ -24,7 +24,7 @@ def data():
 @app.route('/ip/<device>', methods=['GET','POST'])
 def get_ip(device):
     try:
-        return data_list['Reno 6']['ipv6'][:19]+data_list[device]['ipv6']
+        return data_list['Reno 6']['ipv6'][:19]+data_list[device]['ipv6'][:20]
     except:
         return 'err'
 
