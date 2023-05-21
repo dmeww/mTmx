@@ -32,7 +32,7 @@ def append_option():
     print('正在把文件移动到目标目录...')
     os.system('mv /data/data/com.termux/files/home/_posts /data/data/com.termux/files/home/hexo_repo/source')
     print('正在部署博客...')
-    os.system('cd /data/data/com.termux/files/home/hexo_repo && hexo deploy')
+    os.system('cd /data/data/com.termux/files/home/hexo_repo && hexo clean && hexo deploy')
     print('部署完成，等待下一次部署')
 
 def do_task():
