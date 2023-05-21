@@ -3,11 +3,11 @@ import time
 import datetime
 
 import mail_task
-# import task
+import task
 
 def job():
-    # res = task.do_task()
-    res = 'Test Just Now'
+    res = task.do_task()
+    # res = 'Test Just Now'
     mail_task.send_mail(res)
 
 # 计算下一次定时任务的时间
