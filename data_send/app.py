@@ -19,8 +19,9 @@ def get_info():
     data['ipv4'] = ip_4_info
     data['ipv6'] = ip_6_info
     data['user'] = user_info
-    if ip_6_info.__len__ < 5:
+    if ip_6_info.__len__() < 5:
         re_open_wifi()
+        time.sleep(30)
         get_info()
 
 
