@@ -19,6 +19,15 @@ def get_info():
     data['ipv4'] = ip_4_info
     data['ipv6'] = ip_6_info
     data['user'] = user_info
+    if ip_6_info.__len__ < 5:
+        re_open_wifi()
+        get_info()
+
+
+def re_open_wifi():
+    os.system('termux-wifi-enable false')
+    os.system('termux-wifi-enable true')
+
 
 
 import requests,json
@@ -27,7 +36,7 @@ calc = 0
 get_info()
 while True:
     if calc != 0:
-        time.sleep(30*60)
+        time.sleep(10*60)
     else:
         calc +=1
 
