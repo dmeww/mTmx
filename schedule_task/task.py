@@ -43,4 +43,5 @@ def do_task():
     move_md_files_to_root(root_dir)
     remove_non_md_files_and_directories(root_dir)
     append_option()
-    return '笔记同步已同步至Github Pages'
+
+

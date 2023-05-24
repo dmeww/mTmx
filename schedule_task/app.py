@@ -6,9 +6,11 @@ import mail_task
 import task
 
 def job():
-    res = task.do_task()
-    # res = 'Test Just Now'
-    mail_task.send_mail(res)
+    task.do_task()
+    with open('nohup.out','r') as f:
+        mail_task.send_mail(f.read())
+        f.seek(0)
+        f.truncate()
 
 # 计算下一次定时任务的时间
 def calculate_next_run_time():
