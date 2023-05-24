@@ -3,10 +3,10 @@ import smtplib
 from email.mime.text import MIMEText
 
 msg_from='202807403@qq.com'                                 #发送方邮箱
-passwd='cboufvgxfkymbibi'                                   #填入发送方邮箱的授权码
+passwd=''                                   #填入发送方邮箱的授权码
 msg_to='2670072843@qq.com'                                  #收件人邮箱
                             
-subject="python邮件测试"                                     #主题     
+subject="Github Pages更新"                                     #主题     
 
 
 

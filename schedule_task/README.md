@@ -1,6 +1,8 @@
 # 简介
 ## 模块名：定时更新Github Pages
 
+> sample : cboufvgxfkymbibi
+
 ## 实现过程
 > 1. 在 Obsidian 使用 RemotelySave 插件 把笔记同步到 Onedrive 
 > 2. 通过 Rclone 绑定 Onedrive 
