@@ -1,12 +1,7 @@
 import os,time,requests
-
-
-host = ''
-# 发送 POST 请求到 /data 路由
-url = f'http://{host}:5005/data'
+import requests,json
 
 data = {}
-data['device'] = ''
 
 
 def get_info():
@@ -17,6 +12,7 @@ def get_info():
             req = requests.get('http://6.ipw.cn')
         except:
             re_open_wifi()
+            time.sleep(10)
             continue
         resp = req.text
         if resp.__len__() == 0:
@@ -44,23 +40,15 @@ def re_open_wifi():
     os.system('termux-wifi-enable true')
 
 
-
-import requests,json
-
-calc = 0
-get_info()
-while True:
-    if calc != 0:
-        time.sleep(10*60)
-    else:
-        calc +=1
-
+    
+def do_job(host:str,device:str):
+    url = f'http://{host}:5005/data'
+    data['device'] = device
     get_info()
-
     try:
         response = requests.post(url=url, data={'data':json.dumps(data)},timeout=5)
         # 输出响应内容
         print(response.text)
     except:
         pass
-    
+    pass
