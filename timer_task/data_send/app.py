@@ -41,7 +41,7 @@ def re_open_wifi():
 
 
     
-def do_job(host:str,device:str):
+def do_send(host:str,device:str):
     url = f'http://{host}:5005/data'
     data['device'] = device
     get_info()

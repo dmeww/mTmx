@@ -1,6 +1,7 @@
 from rocketry import Rocketry
 from rocketry.args import Arg
-
+from data_send.app import do_send
+from job_gp.app import do_refresh
 app = Rocketry()
 
 # Config of Timer Task
@@ -15,13 +16,12 @@ timer_params={
 @app.task('daily')
 def refresh_github_pages():
     if timer_params['gp'] == 'yes':
-        from job_gp.app import do_job
-        do_job()
+        do_refresh()
 
 
-@app.task('every 10 minutes')
+@app.task('every 1 minute')
 def send_info():
-    from data_send.app import do_send
+    print('sending ip')
     do_send(timer_params['host'],timer_params['device'])
 
 
