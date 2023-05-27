@@ -1,4 +1,4 @@
-import os,time
+import os,time,requests
 
 
 host = ''
@@ -10,19 +10,29 @@ data['device'] = ''
 
 
 def get_info():
+    ip_6_info = ''
+
+    while True:
+        req = requests.get('http://6.ipw.cn')
+        resp = req.text
+        if resp.__len__() == 0:
+            re_open_wifi()
+            time.sleep(10)
+        else:
+            ip_6_info = resp
+            break
+    
     # 获取设备 IP V4 信息
     ip_4_info = os.popen("ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1").read().strip()
 
-    ip_6_info = os.popen("ip -6 addr show dev wlan0 | grep -E 'inet6 .* global' | awk '{print substr($2,20)}' | sort -u").read().strip()
+    # ip_6_info = os.popen("ip -6 addr show dev wlan0 | grep -E 'inet6 .* global' | awk '{print substr($2,20)}' | sort -u").read().strip()
+
     # 获取用户信息
     user_info = os.popen("whoami").read().strip()
     data['ipv4'] = ip_4_info
     data['ipv6'] = ip_6_info
     data['user'] = user_info
-    if ip_6_info.__len__() < 5:
-        re_open_wifi()
-        time.sleep(30)
-        get_info()
+        
 
 
 def re_open_wifi():
