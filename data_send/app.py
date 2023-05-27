@@ -13,7 +13,11 @@ def get_info():
     ip_6_info = ''
 
     while True:
-        req = requests.get('http://6.ipw.cn')
+        try:
+            req = requests.get('http://6.ipw.cn')
+        except:
+            re_open_wifi()
+            continue
         resp = req.text
         if resp.__len__() == 0:
             re_open_wifi()
