@@ -17,6 +17,8 @@ def remove_non_md_files_and_directories(root_dir):
         for filename in filenames:
             if not filename.endswith('.md'):
                 os.remove(os.path.join(dirpath, filename))
+            if filename == 'Template.md':
+                os.remove(os.path.join(dirpath, filename))
 
 def pre_option():
     # hexo_repo/source
