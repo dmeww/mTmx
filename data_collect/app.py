@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
-import json
-import time
+import json,time
+
 app = Flask(__name__)
 
 # 存储数据的列表
@@ -18,15 +18,15 @@ def data():
     data = json.loads(data)
     data['update'] = time.strftime("%m-%d %H:%M:%S", time.localtime())
     data_list[data['device']] = data
-    return 'Data received and stored successfully!'
+    return 'Data received and stored.'
 
 
-@app.route('/ip/<device>', methods=['GET','POST'])
-def get_ip(device):
-    try:
-        return data_list['Reno 6']['ipv6'][:19]+data_list[device]['ipv6'][:20]
-    except:
-        return 'err'
+@app.route('/sms')
+def show_sms():
+    import os
+    sms_list = json.loads(os.popen('termux-sms-list -l 1'))
+    return sms_list[0]
+
 
 
 if __name__ == '__main__':
