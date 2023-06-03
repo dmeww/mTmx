@@ -13,10 +13,11 @@ timer_params={
 }
 
 
-@app.task('daily')
+@app.task('every 24 hour')
 def refresh_github_pages():
     if timer_params['gp'] == 'yes':
         do_refresh()
+
 
 
 @app.task('every 1 minute')

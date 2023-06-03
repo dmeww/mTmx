@@ -3,6 +3,8 @@ import requests,json
 
 data = {}
 
+re_try = 0
+
 
 def get_info():
     ip_6_info = ''
@@ -36,8 +38,12 @@ def get_info():
 
 
 def re_open_wifi():
+    if re_try ==5:
+        re_try = 0
+        time.sleep( 6 * 60 * 60 )
     os.system('termux-wifi-enable false')
     os.system('termux-wifi-enable true')
+    re_try += 1
 
 
     
