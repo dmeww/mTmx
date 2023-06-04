@@ -23,6 +23,7 @@ f.close()
 
 print(f'配置读取完成 \n{config}')
 
+last_v6 = '_'
 while True:
     is_err = False
     try:
@@ -31,8 +32,10 @@ while True:
         is_err = True
         print('err get ipv6')
     if not is_err:
-        print('next change will be in 60s later')
-        basic_url = f'http://dynv6.com/api/update?hostname={[config["hostname"]]}&token={config["token"]}&ipv6={ipv6}'
+        if last_v6 != ipv6:
+            print('ipv6 changed')
+            basic_url = f'http://dynv6.com/api/update?hostname={[config["hostname"]]}&token={config["token"]}&ipv6={ipv6}'
+            print(requests.get(basic_url).text)
     else:
         print('pass to nect tick')
     time.sleep(50)
