@@ -2,6 +2,8 @@ import requests
 import json
 import time
 
+from timer_task.job_gp import mail_task
+
 config = {
     'hostname':'',
     'token':''
@@ -26,19 +28,24 @@ print(f'配置读取完成 \n{config}')
 last_v6 = '_'
 while True:
     is_err = False
+    res = 'DDNS 更新结果\n'
     try:
-        ipv6 = requests.get('http://6.ipw.cn',timeout=5).text
+        ipv6 = requests.get( 'http://6.ipw.cn' , timeout=5 ).text
     except Exception as e:
         is_err = True
         print('err get ipv6')
+        res += 'err get ipv6'
     if not is_err:
         if last_v6 != ipv6:
             print('ipv6 changed')
-            basic_url = f'http://dynv6.com/api/update?hostname={[config["hostname"]]}&token={config["token"]}&ipv6={ipv6}'
-            print(requests.get(basic_url).text)
+            last_v6 = ipv6
+            basic_url = f'http://dynv6.com/api/update?hostname={config["hostname"]}&token={config["token"]}&ipv6={ipv6}'
+            res += requests.get(basic_url).text
+            print(res)
+            mail_task.send_mail('DDNS',res)
     else:
-        print('pass to nect tick')
-    time.sleep(50)
+        print('get v6 err')
+    time.sleep(60)
 
 
 
