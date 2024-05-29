@@ -24,6 +24,9 @@ export default async (pkg: Pkg) => {
             }
         })
         proc.unref()
+        process.on('exit',()=>{
+            proc.kill(9)
+        })
     })
     spin.stop('Executed Install Script')
     p.outro('Installed')
